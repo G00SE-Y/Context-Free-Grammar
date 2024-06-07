@@ -1,0 +1,7 @@
+add $rd $r1 $r2
+sub $rd $r1 $r2
+or $rd $r1 $r2
+
+addi $rd $r1 0123456789
+addi $rd $r1 0x0123456789abcdef
+ori $rd $r1 0b01
