@@ -65,7 +65,7 @@ int main() {
     cout << cfg << endl;
 
 
-    std::ifstream fp("input.txt");
+    std::ifstream fp("compiler_example.txt");
     
     if(fp.is_open()) {
 
