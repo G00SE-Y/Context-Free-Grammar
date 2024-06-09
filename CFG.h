@@ -6,6 +6,7 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <set>
+#include <regex>
 
 class CFG {
 
@@ -15,7 +16,7 @@ class CFG {
 
     bool add_rule(std::string name, std::vector<std::string> products);
     bool set_start_rule(std::string name);
-    bool add_terminal(std::string name);
+    bool add_terminal(std::string name, std::regex expr);
     bool verify(std::vector<std::string> input);
     std::string to_string() const;
 
@@ -33,7 +34,7 @@ class CFG {
     std::unordered_map<std::string, std::vector<std::string>> rules;
 
     // the set of terminals
-    std::unordered_set<std::string> terminals;
+    std::unordered_map<std::string, std::regex> terminals;
 
     // the set of all names of rules or terminals
     std::unordered_map<std::string, int> names;

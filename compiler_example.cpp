@@ -20,34 +20,27 @@ int main() {
 
     CFG cfg = CFG();
     
-    cfg.add_terminal("\n");
+    cfg.add_terminal("\n", std::regex("[\n]"));
 
-    // R-type
-    cfg.add_terminal("add");
-    cfg.add_terminal("sub");
-    cfg.add_terminal("or");
+    // R-type ops
+    cfg.add_terminal("add", std::regex("^add$"));
+    cfg.add_terminal("sub", std::regex("^sub$"));
+    cfg.add_terminal("or", std::regex("^or$"));
 
-    // I-type
-    cfg.add_terminal("addi");
-    cfg.add_terminal("ori");
+    // I-type ops
+    cfg.add_terminal("addi", std::regex("^addi$"));
+    cfg.add_terminal("ori", std::regex("^ori$"));
 
-    // registers
-    cfg.add_terminal("$rd");
-    cfg.add_terminal("$r1");
-    cfg.add_terminal("$r2");
+    // register value
+    cfg.add_terminal("reg", std::regex("^\\$[a-z]+[0-9]{0,2}$"));
 
-    // immediates
-    cfg.add_terminal("0123456789");
-    cfg.add_terminal("0b01");
-    cfg.add_terminal("0x0123456789abcdef");
+    // immediate values
+    cfg.add_terminal("imm", std::regex("(^[-]?[0-9]+$)|(^(0(b|B))[01]+$)|(^0(x|X)[a-fA-F0-9]+$)"));
+
 
     // operand type rules
-    cfg.add_rule("REG", std::vector<std::string>({"$rd", "|", "$r1", "|", "$r2"}));
-    cfg.add_rule("IMM", std::vector<std::string>({"0123456789", "|", "0b01", "|", "0x0123456789abcdef"}));
-
-    // operand type rules
-    cfg.add_rule("RTYPE_OPERANDS", std::vector<std::string>({"REG", "REG", "REG"}));
-    cfg.add_rule("ITYPE_OPERANDS", std::vector<std::string>({"REG", "REG", "IMM"}));
+    cfg.add_rule("RTYPE_OPERANDS", std::vector<std::string>({"reg", "reg", "reg"}));
+    cfg.add_rule("ITYPE_OPERANDS", std::vector<std::string>({"reg", "reg", "imm"}));
 
     // op type rules
     cfg.add_rule("RTYPE_OPS", std::vector<std::string>({"add", "|", "sub", "|", "or"}));

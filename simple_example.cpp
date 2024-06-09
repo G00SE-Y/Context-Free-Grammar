@@ -13,13 +13,14 @@ int main() {
 
     CFG cfg = CFG();
     
-    cfg.add_terminal("a");
-    cfg.add_terminal("b");
-    cfg.add_terminal("c");
+    cfg.add_terminal("a", std::regex("^a$"));
+    cfg.add_terminal("b", std::regex("^b$"));
+    cfg.add_terminal("c", std::regex("^c$"));
 
     cfg.add_rule("A", std::vector<std::string>({"a"}));
     cfg.add_rule("B", std::vector<std::string>({"b"}));
     cfg.add_rule("C", std::vector<std::string>({"c"}));
+
     
     cfg.add_rule("ABC", std::vector<std::string>({"A", "B", "C"}));
     cfg.add_rule("[ABC]", std::vector<std::string>({"A", "|", "B", "|", "C"}));
