@@ -70,11 +70,6 @@ int main() {
 
             int pos;
 
-            // if((pos = line.find(EOF)) >= 0) {
-            //     std::cout << "contains EOF\n";
-            //     line[pos] = '\n';
-            // }
-
             while ((pos = line.find('\n')) >= 0) {
                 if(pos == 0) {
                     program.push_back("\n");

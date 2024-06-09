@@ -118,29 +118,7 @@ std::ostream& operator<<(std::ostream& out, const CFG& data) {
 
 //* ---------------- Private Functions ---------------- *//
 
-
-
-void print_chars(std::ostream& ss, std::string s) { // todo: remove
-    for(auto c: s) {
-        if(c == '\n') ss << "\\n";
-        else if (c == EOF) std::cout << "EOF";
-        else ss << c; 
-    }
-}
-
-void vector_str(std::ostream& ss, std::vector<std::string> v) {
-    for(auto& s: v) {
-        print_chars(ss, s);
-        ss << " ";
-    }
-} 
-
 CFG::match_return CFG::verify(std::vector<std::string> input, std::string rule_name) {
-    
-    // debug prints
-    // std::cout << "Verifying { ";
-    // vector_str(std::cout, input);
-    // std::cout << "} on rule \"" << rule_name << "\"\n";
 
     std::vector<std::vector<std::string>> cases;
 
@@ -170,13 +148,6 @@ CFG::match_return CFG::verify(std::vector<std::string> input, std::string rule_n
 
     match_return ret;
 
-    // debug prints
-    // for(auto& c: cases) {
-    //     std::cout << "case: { ";
-    //     vector_str(std::cout, c);
-    //     std::cout << "}\n";
-    // }
-
     for(auto& c: cases) {
         
         ret = check_match(input, c);
@@ -191,13 +162,6 @@ CFG::match_return CFG::verify(std::vector<std::string> input, std::string rule_n
 
 
 CFG::match_return CFG::check_match(std::vector<std::string> input, std::vector<std::string> c) {
-
-    // debug prints
-    // std::cout << "Try Matching \"";
-    // vector_str(std::cout, input);
-    // std::cout << "\" with { ";
-    // vector_str(std::cout, c);
-    // std::cout << "}\n";
 
     match_return ret;
 
@@ -215,28 +179,11 @@ CFG::match_return CFG::check_match(std::vector<std::string> input, std::vector<s
         
         if(names[elem] == CFG::TERM) {
 
-            // debug prints
-            // std::cout << "match \"";
-            // print_chars(std::cout, elem);
-            // std::cout << "\" to \"";
-            // print_chars(std::cout, input[0]);
-            // std::cout << "\"\n";
-
             if(input.size() > 0 && std::regex_match(input[0], terminals[elem])) { // matched a terminal, consume that terminal from the input 
-                
-                // debig prints
-                // std::cout << "Matched \"";
-                // print_chars(std::cout, elem);
-                // std::cout << "\"\n";
 
                 input.erase(input.begin());
             }
             else { // failed to match, return
-
-                // debug prints
-                // std::cout << "Failed to match \"";
-                // print_chars(std::cout, elem);
-                // std::cout << "\"\n";
 
                 ret.match = false;
                 return ret;
@@ -247,10 +194,6 @@ CFG::match_return CFG::check_match(std::vector<std::string> input, std::vector<s
             match_return m = verify(input, elem);
             
             if(!m.match) {
-                // debug prints
-                // std::cout << "Failed to match \"";
-                // print_chars(std::cout, elem);
-                // std::cout << "\"\n";
 
                 ret.match = false;
                 return ret;
