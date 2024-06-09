@@ -5,7 +5,7 @@
 
 - Return Value: `CFG`
     
-    Returns a new Context Free Grammar object.
+  - Returns a new Context Free Grammar object.
 
 
 
@@ -24,7 +24,7 @@
 
 - Return Value: `bool`
     
-    Returns `true` if the rule was added, or `false` if it was unable to be added because a rule or terminal with that name already exists.
+  - Returns `true` if the rule was added, or `false` if it was unable to be added because a rule or terminal with that name already exists.
 
 
 
@@ -39,7 +39,7 @@
 
 - Return Value: `bool`
     
-    Returns `true` if the rule was set, or `false` if it was unable to be set because a rule with that name does not exist.
+  - Returns `true` if the rule was set, or `false` if it was unable to be set because a rule with that name does not exist.
 
 
 
@@ -58,7 +58,7 @@
 
 - Return Value: `bool`
     
-    Returns `true` if the terminal was added, or `false` if it was unable to be added because a terminal or rule with that name already exists.
+  - Returns `true` if the terminal was added, or `false` if it was unable to be added because a terminal or rule with that name already exists.
 
 
 
@@ -73,7 +73,7 @@
 
 - Return Value: `bool`
     
-    Returns `true` if the input matches the CFG object's grammar, or `false` if it does not match.
+  - Returns `true` if the input matches the CFG object's grammar, or `false` if it does not match.
 
 
 
@@ -82,4 +82,4 @@
 
 - Return Value: `std::string`
     
-    Returns a string of the rules and terminals that represent the language that the `CFG` object would match with.
+  - Returns a string of the rules and terminals that represent the language that the `CFG` object would match with.
