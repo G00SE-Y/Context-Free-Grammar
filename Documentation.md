@@ -105,4 +105,4 @@ There are 2 special preset terminals that are added when a new `CFG` object is i
 
 - `none`
 
-  - This represents epsilon (`ε`), or the 'empty string' in a more formal notation. The way this is used interinally is that if a case is `none`, then it will automaticall accept a match. Because of this, it is very important that, for any rule where the empty string is accepted, it is the **last** case in the rule. If it is not the last case, then every case after `none` will be unreachable because the parser will match with `none` and move on to the next rule or terminal in the previous rule.
+  - This represents epsilon (`ε`), or the 'empty string' in a more formal notation. The way this is used interinally is that if a case is `none`, then it will automatically accept a match. Because of this, it is very important that, for any rule where the empty string is accepted, it is the **last** case in the rule. If it is not the last case, then every case after `none` will be unreachable because the parser will match with `none` and move on to the next rule or terminal in the previous rule.
