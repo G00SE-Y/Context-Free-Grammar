@@ -11,7 +11,7 @@
 
   - `products`
    
-        A vector of string names that reference other rules or terminals
+    A vector of string names that reference other rules or terminals
 
 - Return Value: `bool`
     
