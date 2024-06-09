@@ -1,4 +1,4 @@
 # Context Free Grammar
 By Ethan Woollet
 
-# TODO
+This is a simple Context Free Grammar implementation.\
