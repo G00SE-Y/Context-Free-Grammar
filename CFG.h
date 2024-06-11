@@ -15,6 +15,7 @@ class CFG {
     CFG();
 
     bool add_rule(std::string name, std::vector<std::string> products);
+    bool add_rule(std::string name, std::string products, std::string delimiter = " ");
     bool set_start_rule(std::string name);
     bool add_terminal(std::string name, std::regex expr);
     bool verify(std::vector<std::string> input);
@@ -45,12 +46,9 @@ class CFG {
         std::vector<std::string> remainder;
     }match_return;
 
-
-    // internal use verify() for recursive validation
-    match_return verify(std::vector<std::string> input, std::string rule_name);
-
-    // checks if a string matches a rule case
-    match_return check_match(std::vector<std::string> input, std::vector<std::string> c);
+    std::vector<std::string> parse_rule_string(std::string rule, std::string delimiter);
+    match_return verify(std::vector<std::string> input, std::string rule_name); // internal use verify() for recursive validation
+    match_return check_match(std::vector<std::string> input, std::vector<std::string> c); // checks if a string matches a rule case
 };
 
 

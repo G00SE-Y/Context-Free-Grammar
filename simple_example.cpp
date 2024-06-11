@@ -17,16 +17,16 @@ int main() {
     cfg.add_terminal("b", std::regex("^b$"));
     cfg.add_terminal("c", std::regex("^c$"));
 
-    cfg.add_rule("A", std::vector<std::string>({"a"}));
-    cfg.add_rule("B", std::vector<std::string>({"b"}));
-    cfg.add_rule("C", std::vector<std::string>({"c"}));
+    cfg.add_rule("A", "a");
+    cfg.add_rule("B", "b");
+    cfg.add_rule("C", "c");
 
     
-    cfg.add_rule("ABC", std::vector<std::string>({"A", "B", "C"}));
-    cfg.add_rule("[ABC]", std::vector<std::string>({"A", "|", "B", "|", "C"}));
-    cfg.add_rule("ABC+", std::vector<std::string>({"ABC", "ABC+", "|", "none"}));
+    cfg.add_rule("ABC", "A B C");
+    cfg.add_rule("[ABC]", "A | B | C");
+    cfg.add_rule("ABC+", "ABC ABC+ | none");
 
-    cfg.add_rule("LANGUAGE", std::vector<std::string>({"[ABC]", "ABC+"}));
+    cfg.add_rule("LANGUAGE", "[ABC] ABC+");
 
     cfg.set_start_rule("LANGUAGE");
 
@@ -58,12 +58,12 @@ int main() {
         "c"
     });
 
+    cout << "cfg: " << cfg << "\n\n";
+
     cout << "Member of CFG? " << (cfg.verify(input1) ? "true" : "false") << endl;
     cout << "Member of CFG? " << (cfg.verify(input2) ? "true" : "false") << endl;
     cout << "Member of CFG? " << (cfg.verify(input3) ? "true" : "false") << endl;
-    cout << "Member of CFG? " << (cfg.verify(input4) ? "true" : "false") << endl;
-    
-
+    cout << "Member of CFG? " << (cfg.verify(input4) ? "true" : "false") << endl;    
 
     return 0;
 }

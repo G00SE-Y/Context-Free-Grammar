@@ -52,6 +52,13 @@ bool CFG::add_rule(std::string name, std::vector<std::string> products) {
 
 
 
+bool CFG::add_rule(std::string name, std::string products, std::string delimiter) {
+
+    return add_rule(name, parse_rule_string(products, delimiter));
+}
+
+
+
 bool CFG::add_terminal(std::string name, std::regex expr) {
     
     if(names.count(name)) return false;
@@ -117,6 +124,27 @@ std::ostream& operator<<(std::ostream& out, const CFG& data) {
 
 
 //* ---------------- Private Functions ---------------- *//
+
+
+
+std::vector<std::string> CFG::parse_rule_string(std::string rule, std::string delimiter) {
+
+    std::regex re_delim(delimiter);
+    std::vector<std::string> products;
+
+    rule += delimiter;
+
+    auto re_it = std::sregex_token_iterator(rule.begin(), rule.end(), re_delim, -1);
+    auto re_end = std::sregex_token_iterator();
+
+    for( auto i = re_it; i != re_end; i++) {
+        if((*i).str().size() > 0) products.push_back((*i).str());
+    }
+
+    return products;
+}
+
+
 
 CFG::match_return CFG::verify(std::vector<std::string> input, std::string rule_name) {
 
